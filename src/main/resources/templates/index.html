@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Сокращение ссылок</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<div th:replace="layouts/header :: header"></div>
+<div class="presentation">
+    <h1>Все ссылки</h1>
+    <div class="flex-container">
+        <div th:each="el : ${links}" class="flex-item">
+            <a th:href="${el.url_full}">• Ссылка: <span th:text="${el.url_short}"/></a>
+        </div>
+    </div>
+        <h1>Добавление ссылок</h1>
+        <form method="post" th:action="@{/add}">
+            <input type="text" name="url_full" placeholder="Длинная ссылка">
+            <input type="text" name="url_short" placeholder="Сокращенная ссылка">
+            <div th:text="${error}" style="color: red"/>
+            <button type="submit">Добавить</button>
+        </form>
+</div>
+
+<div th:replace="layouts/footer :: footer"></div>
+</body>
+</html>
